@@ -49,9 +49,9 @@ export const typeDefs = gql`
         createTodo(title: String!, description: String!, user: String!): Todo
         updateTodo(
             id: ID!
-            title: String!
-            description: String!
-            isCompleted: Boolean!
+            title: String
+            description: String
+            isCompleted: Boolean
         ): Todo
         deleteTodo(id: ID!): String
     }
