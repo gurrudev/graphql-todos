@@ -1,20 +1,27 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
+const todoSchema = new mongoose.Schema(
+    {
+        title: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
+        },
+        isCompleted: {
+            type: Boolean,
+            default: false,
+        },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "user",
+            required: true,
+        },
     },
-    description:{
-        type: String,
+    {
+        timestamps: true,
     },
-    user: {
-        type: mongoose.Types.ObjectId,
-        ref:'User',
-        required: true
-    },
-},{
-    timestamps: true
-})
+);
 
-export const User = mongoose.model("user", userSchema)
+export const Todo = mongoose.model("todo", todoSchema);

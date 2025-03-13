@@ -1,0 +1,28 @@
+{
+  "name": "graphql-todos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev-client": "cd client && pnpm run dev",
+    "dev-server": "cd server && pnpm run dev",
+    "dev": "concurrently -n \"CLIENT,SERVER\" -c \"bgBlue,bgYellow\" -p \"{name}\" \"pnpm run dev-client\" \"pnpm run dev-server\"",
+    "install-client": "cd client && pnpm i",
+    "install-server": "cd server && pnpm i",
+    "installer": "pnpm i && pnpm run install-server && pnpm run install-client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gurrudev/graphql-todos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gurrudev/graphql-todos/issues"
+  },
+  "homepage": "https://github.com/gurrudev/graphql-todos#readme",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
