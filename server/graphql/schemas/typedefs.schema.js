@@ -19,24 +19,19 @@ export const typeDefs = gql`
         createdAt: String!
         updatedAt: String!
     }
-    # AuthResponse type will be used for sign-in to return both the user and token
     type AuthResponse {
         token: String!
     }
-    type UserDeleteResponse{
+    type UserDeleteResponse {
         message: String!
     }
     type Query {
-        # Signin query: Authenticate the user and return user info + token
         signinUser(username: String!, password: String!): AuthResponse!
-        # Query to get user by JWT token (for protected routes)
         getUserByToken(token: String!): User
-        # Queries to get todos
         getTodos: [Todo]
         getTodo(id: ID!): Todo
     }
     type Mutation {
-        # Create, update, and delete users
         createUser(name: String!, username: String!, password: String!): User
         updateUser(
             id: ID!
@@ -45,7 +40,6 @@ export const typeDefs = gql`
             password: String
         ): User
         deleteUser(id: ID!): UserDeleteResponse!
-        # Create, update, and delete todos
         createTodo(title: String!, description: String!, user: String!): Todo
         updateTodo(
             id: ID!

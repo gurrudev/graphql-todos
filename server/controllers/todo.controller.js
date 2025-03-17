@@ -5,7 +5,7 @@ export class TodoController {
     static getTodos = async () => {
         try {
             const todos = await Todo.find().populate("user", "name").exec();
-            return todos; // Return the todos array directly
+            return todos;
         } catch (error) {
             console.log(error);
             throw new Error("Internal server error");
@@ -22,23 +22,18 @@ export class TodoController {
     };
     static createTodo = async (_, { title, description, user }) => {
         try {
-            // Check if the user exists
             const existingUser = await User.findById(user);
             if (!existingUser) {
                 throw new Error("User not found");
             }
-            // Create a new Todo
             const newTodo = new Todo({
                 title,
                 description,
-                user, // Assuming user is the userId in the Todo schema
+                user,
             });
-            // Save the new Todo
             await newTodo.save();
-            // Add the new Todo's ID to the user's todos[] array
             existingUser.todos.push(newTodo._id);
             await existingUser.save();
-            // Return the newly created Todo
             return newTodo;
         } catch (error) {
             console.log(error);
